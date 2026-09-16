@@ -1,0 +1,19 @@
+name: ph306
+channels:
+  - conda-forge
+  - astropy
+dependencies:
+  - python>=3.14
+  - ipython
+  - jupyter
+  - jupyterlab
+  - matplotlib
+  - astropy
+  - numpy
+  - scipy
+  - pandas
+  - pytest
+  - flake8
+  - mypy
+  - numpydoc
+  - scikit-image
