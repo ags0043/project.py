@@ -55,17 +55,18 @@ if scale < 1:
     )
 denoised = image_denoise(image)
 
-if __name__ == "__main__":
-    figure, axes = plt.subplots(1, 2, figsize=(15, 5))
-    axes[0].imshow(image, cmap="gray")
-    axes[0].set_title("Original")
-    axes[1].imshow(denoised, cmap="gray")
-    axes[1].set_title("Denoised")
+figure, axes = plt.subplots(1, 2, figsize=(15, 5))
+axes[0].imshow(image, cmap="gray")
+axes[0].set_title("Original")
+axes[1].imshow(denoised, cmap="gray")
+axes[1].set_title("Denoised")
 
-    for axis in axes:
-        axis.axis("off")
-    main()
+for axis in axes:
+    axis.axis("off")
 
 figure.tight_layout()
 figure.savefig("denoising_results.png", dpi=150)
 print("Saved denoising_results.png")
+
+if __name__ == "__main__":
+    main()
