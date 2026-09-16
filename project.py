@@ -3,6 +3,8 @@
 Project uses local 'attampt2.jpg' image as test.
 """
 
+from py_compile import main
+
 import numpy as np
 import skimage as ski
 import matplotlib.pyplot as plt
@@ -24,12 +26,6 @@ def image_denoise(matrix: np.ndarray, values: int = 75) -> np.ndarray:
     -------
     numpy.ndarray
         Denoised grayscale image with values clipped to the range ``[0, 1]``.
-
-    Notes
-    -----
-    The image is centered by subtracting its column mean before forming a square matrix. 
-    The mean is added back after the low-rank reconstruction
-    to preserve the image contrast.
     """
     grayscale = ski.color.rgb2gray(matrix) if matrix.ndim == 3 else matrix
     mean = grayscale.mean(axis=0)
@@ -44,6 +40,7 @@ def image_denoise(matrix: np.ndarray, values: int = 75) -> np.ndarray:
     compressed = centered @ eigenvectors @ eigenvectors.T + mean
 
     return np.clip(compressed, 0, 1)
+
 
 image = ski.io.imread("attempt2.jpg", as_gray=True)
 scale = 800 / max(image.shape)
