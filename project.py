@@ -66,5 +66,6 @@ def main():
     figure.savefig("denoising_results.png", dpi=150)
     print("Saved denoising_results.png")
 
+
 if __name__ == "__main__":
     main()
