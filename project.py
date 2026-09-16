@@ -42,25 +42,29 @@ def image_denoise(matrix: np.ndarray, values: int = 75) -> np.ndarray:
     return np.clip(compressed, 0, 1)
 
 
-image = ski.io.imread("attempt2.jpg", as_gray=True)
-scale = 800 / max(image.shape)
-if scale < 1:
-    image = ski.transform.resize(
-        image,
-        (round(image.shape[0] * scale), round(image.shape[1] * scale)),
-        anti_aliasing=True,
-    )
-denoised = image_denoise(image)
+def main():
+    image = ski.io.imread("attempt2.jpg", as_gray=True)
+    scale = 800 / max(image.shape)
+    if scale < 1:
+        image = ski.transform.resize(
+            image,
+            (round(image.shape[0] * scale), round(image.shape[1] * scale)),
+            anti_aliasing=True,
+        )
+    denoised = image_denoise(image)
 
-figure, axes = plt.subplots(1, 2, figsize=(15, 5))
-axes[0].imshow(image, cmap="gray")
-axes[0].set_title("Original")
-axes[1].imshow(denoised, cmap="gray")
-axes[1].set_title("Denoised")
+    figure, axes = plt.subplots(1, 2, figsize=(15, 5))
+    axes[0].imshow(image, cmap="gray")
+    axes[0].set_title("Original")
+    axes[1].imshow(denoised, cmap="gray")
+    axes[1].set_title("Denoised")
 
-for axis in axes:
-    axis.axis("off")
+    for axis in axes:
+        axis.axis("off")
 
-figure.tight_layout()
-figure.savefig("denoising_results.png", dpi=150)
-print("Saved denoising_results.png")
+    figure.tight_layout()
+    figure.savefig("denoising_results.png", dpi=150)
+    print("Saved denoising_results.png")
+
+if __name__ == "__main__":
+    main()
